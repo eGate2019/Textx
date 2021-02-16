@@ -1,0 +1,37 @@
+
+Comment:
+'/*' Programs '*/'|
+'//' Programs /$/
+;
+
+Programs: programs*=Program | Program operarto=Operator Program | '(' group=Programs ')'
+;
+Program:
+  '<'
+    commands+=Command
+  '>' 
+;
+
+Command:
+  Store | Replace| Compare
+  ;
+
+Store:
+  'STORE' '(' ID ')'
+;
+Replace:
+  'REPLACE' '(' ID ')'
+;
+
+Compare:
+  'COMPARE' '(' ID ( ',' parameters*= Parameter )+ ')'
+;
+
+Parameter:
+  'GT'|'LS'|'EQ'|'DIF'
+;
+
+Operator:
+'AND'|'OR'|'NOT'
+;
+
